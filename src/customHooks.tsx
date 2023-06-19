@@ -32,7 +32,6 @@ export const useDocks = () => {
         if(!localDocks) {
             getDocks()
         } else {
-            console.log('123', JSON.parse(localDocks));
             setDocks(JSON.parse(localDocks))
             setIsLoading(false)
         }

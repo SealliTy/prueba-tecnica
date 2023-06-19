@@ -1,13 +1,21 @@
-import './App.css';
 import { useState, useEffect } from 'react'
+import moment from 'moment';
 import uuid from 'react-uuid';
+
+// customhooks
+import { Dock, useDocks } from './customHooks';
+
+// utils
+import { FormData } from './utils';
+
+// assests
+import './App.css';
+import { PlusOutlined } from '@ant-design/icons';
+import { DeleteOutlined, FormOutlined } from '@ant-design/icons';
+
+// components
 import { ColumnsType } from 'antd/es/table';
 import { Table, Button, Modal, Form, Input, Checkbox, DatePicker, message, Popconfirm } from 'antd';
-import { Dock, useDocks } from './customHooks';
-import { PlusOutlined } from '@ant-design/icons';
-import { FormData } from './utils';
-import { DeleteOutlined, FormOutlined } from '@ant-design/icons';
-import moment from 'moment';
 
 function App() {
   const { TextArea } = Input;
@@ -125,6 +133,8 @@ function App() {
   };
 
   const handleCancel = () => {
+    form.resetFields()
+    setEdit('')
     setIsModalOpen(false);
   };
 
@@ -156,8 +166,8 @@ function App() {
           <Button type='primary' size='large' shape='round' icon={<PlusOutlined />} onClick={() => setIsModalOpen(true)}>Agregar</Button>
         </div>
       </div>
-      <Table columns={columns} dataSource={filteredData} loading={isLoading} bordered className='container_table' />
-      <Modal title='Agrega un nuevo Dock' open={isModalOpen} okText={edit ? 'Actualizar' : 'Crear'} onOk={handleOk} onCancel={handleCancel}>
+      <Table rowKey='id' columns={columns} dataSource={filteredData} loading={isLoading} bordered className='container_table' locale={{ emptyText: 'No se encontro información' }} />
+      <Modal title={edit ? 'Actualizar un Dock' : 'Agrega un nuevo Dock'} open={isModalOpen} okText={edit ? 'Actualizar' : 'Crear'} onOk={handleOk} onCancel={handleCancel} maskClosable={false} closable={false}>
         <Form
           name="basic"
           initialValues={{ remember: true }}
