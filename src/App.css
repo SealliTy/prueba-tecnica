@@ -1,0 +1,23 @@
+.container {
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.container_table {
+  background: #fff;
+  border-radius: 20px;
+}
+.container_header {
+  background: #fff;
+  width: 100%;
+  height: 80px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
+}
+.title_header {
+  font-size: 24px;
+}
